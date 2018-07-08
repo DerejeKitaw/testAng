@@ -14,8 +14,6 @@
     "body-parser": "^1.18.2",
     "express-session": "^1.15.6",
     "mongoose": "^4.13.9",
-    "path": "^0.12.7",
-    "port": "^0.8.1",
-    "routes": "^2.1.0"
+    "path": "^0.12.7"
   }
 }
