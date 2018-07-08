@@ -46,7 +46,7 @@ export interface IProject {
   panelType: string;
 
   // Title block
-  labelCustomerName: string;
+  customerName: string;
   jobType: string;
   systemPower: number;
 
