@@ -50,7 +50,7 @@ export interface IProject {
   jobType: string;
   systemPower: number;
 
-  lableAdress1: string;
-  lableAdress2: string;
+  adress1: string;
+  adress2: string;
   drawingDate: string;
 }

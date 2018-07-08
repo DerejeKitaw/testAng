@@ -38,6 +38,21 @@ const ProjectsSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  numberOfString: {
+    type: Number
+  },
+  numberOfModuleInverter1String1: {
+    type: Number
+  },
+  numberOfModuleInverter1String2: {
+    type: Number
+  },
+  numberOfModuleInverter1String3: {
+    type: Number
+  },
+  spaceAvailable: {
+    type: Boolean
   }
 });
 
