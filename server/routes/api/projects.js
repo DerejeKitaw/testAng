@@ -24,6 +24,9 @@ router.get('/', (req, res) => {
 // @access  Public
 router.get('/test', (req, res) => res.json({ msg: 'projects Works' }));
 
+// @route   POST api/projects
+// @desc    POST project by id
+// @access  Public
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -51,5 +54,16 @@ router.post('/',
   }
 );
 
+
+// @route   GET api/projects/:id
+// @desc    Get project by id
+// @access  Public
+router.get('/:id', (req, res) => {
+  Project.find({projectId: req.params.id})
+    .then(project => res.json(project))
+    .catch(err =>
+      res.status(404).json({ noprojectfound: 'No project found with that ID' })
+    );
+});
 
 module.exports = router;
