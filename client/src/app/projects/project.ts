@@ -1,5 +1,5 @@
 export interface IProject {
-  id: number;
+  projectId: string;
   // Strings
   numberOfString: number;
   numberOfModuleInverter1String1: number;

@@ -1,3 +1,35 @@
-<p>
-  project-list works!
-</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{pageTitle}}
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table" *ngIf="projects && projects.length">
+        <thead>
+          <tr>
+            <td>customerName</td>
+            <td>Job Number</td>
+            <td>Created Date</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let project of projects'>
+            <td>{{ project.customerName }}</td>
+            <td>
+              <a [routerLink]="['/projects', project.projectId]">{{ project.projectId }}</a>
+            </td>
+            <td>{{ project.date | date}}</td>
+
+            <td>
+              <a class="btn btn-primary" [routerLink]="['/projects', project.projectId, 'edit']">
+                Edit
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>

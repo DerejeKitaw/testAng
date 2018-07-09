@@ -37,6 +37,7 @@ router.post('/',
 
     const newProject = new Project({
       jobType: req.body.jobType,
+      projectId: req.body.projectId,
       customerName: req.body.customerName,
       user: req.user.id,
       numberOfString: req.body.numberOfString,

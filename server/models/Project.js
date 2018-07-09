@@ -7,6 +7,10 @@ const ProjectsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
+  projectId: {
+    type: String,
+    required: true,
+  },
   jobType: {
     type: String
   },
