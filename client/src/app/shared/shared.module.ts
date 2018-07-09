@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -7,6 +8,7 @@ import { CommonModule } from '@angular/common';
   ],
   exports: [
     CommonModule,
+    FormsModule
   ],
   declarations: []
 })

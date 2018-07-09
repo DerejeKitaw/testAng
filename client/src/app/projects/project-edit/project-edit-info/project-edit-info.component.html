@@ -1,0 +1,28 @@
+<div class="panel-body">
+  <form class="form-horizontal" novalidate #projectForm="ngForm">
+    <fieldset>
+      <legend>Basic Project Information</legend>
+      <div class="form-group" [ngClass]="{'has-error': (customerName.touched || customerName.dirty) && !customerName.valid }">
+        <label class="col-md-2 control-label" for="inputcustomerName">Project Title</label>
+
+        <div class="col-md-8">
+          <input class="form-control" id="inputcustomerName" type="text" placeholder="Title (required)" required minlength="3" maxlength="50"
+            [(ngModel)]="project.customerName" name="customerName" #customerName="ngModel" />
+          <span class="help-block" *ngIf="(customerName.touched || customerName.dirty) && customerName.errors">
+            <span *ngIf="customerName.errors.required">
+              Please enter a project customerName.
+            </span>
+            <span *ngIf="customerName.errors.minlength">
+              The project customerName must be at least 3 characters.
+            </span>
+            <span *ngIf="customerName.errors.maxlength">
+              The project customerName cannot exceed 50 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+    </fieldset>
+  </form>
+</div>
