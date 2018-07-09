@@ -55,6 +55,102 @@ const ProjectsSchema = new Schema({
   numberOfModuleInverter1String3: {
     type: Number
   },
+  mainServiceBreakerSize: {
+    type: Number
+  },
+  unFusedAcDisconnectAmpRating: {
+    type: Number
+  },
+  acOutputVoltage: {
+    type: Number
+  },
+  fusedAcDisconnectAmpRating: {
+    type: Number
+  },
+  fuseSize: {
+    type: Number
+  },
+  inverterMaxDcVoltage: {
+    type: Number
+  },
+  nominalDcInputVoltage: {
+    type: Number
+  },
+  ratedVoltage: {
+    type: Number
+  },
+  inverter1Type: {
+    type: String
+  },
+  maxPowerOutput: {
+    type: Number
+  },
+  inverterMaxPowerOutput: {
+    type: Number
+  },
+  inverterAcOutputVoltage: {
+    type: Number
+  },
+  maxAcCurrentOutput: {
+    type: Number
+  },
+  cec: {
+    type: Number
+  },
+  optimizerMaxDcCurrentInput: {
+    type: Number
+  },
+  optimizerMaxDcCurrentOutput: {
+    type: Number
+  },
+  optimizerMaxPowerOutput: {
+    type: Number
+  },
+  optimizerMaxDcVoltage: {
+    type: Number
+  },
+  optimizerModel: {
+    type: Number
+  },
+  panelMaxSystemVoltage: {
+    type: Number
+  },
+  panelIsc: {
+    type: Number
+  },
+  panelVoc: {
+    type: Number
+  },
+  panelImp: {
+    type: Number
+  },
+  panelVmp: {
+    type: Number
+  },
+  panelPower: {
+    type: Number
+  },
+  panelType: {
+    type: String
+  },
+  customerName: {
+    type: String
+  },
+  jobType: {
+    type: String
+  },
+  systemPower: {
+    type: Number
+  },
+  adress1: {
+    type: String
+  },
+  adress2: {
+    type: String
+  },
+  drawingDate: {
+    type: Date
+  },
   spaceAvailable: {
     type: Boolean
   }
