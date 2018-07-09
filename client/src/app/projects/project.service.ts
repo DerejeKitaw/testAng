@@ -52,6 +52,42 @@ export class ProjectService {
     return throwError(errorMessage);
   }
 
+  deleteProject(id: string): Observable<{}> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    const url = `${this._projectsUrl}/${id}`;
+    return this._http.delete<IProject>(url, { headers: headers })
+      .pipe(
+        tap(data => console.log('deleteProject: ' + id)),
+        catchError(this.handleError)
+      );
+  }
+
+  saveProject(project: IProject): Observable<IProject> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    if (project.projectId === '0') {
+      return this.createProject(project, headers);
+    }
+    return this.updateProject(project, headers);
+  }
+
+  private createProject(project: IProject, headers: HttpHeaders): Observable<IProject> {
+    project.projectId = undefined;
+    return this._http.post<IProject>(this._projectsUrl, project, { headers: headers })
+      .pipe(
+        tap(data => console.log('createProject: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  private updateProject(project: IProject, headers: HttpHeaders): Observable<IProject> {
+    const url = `${this._projectsUrl}/${project.projectId}`;
+    return this._http.put<IProject>(url, project, { headers: headers })
+      .pipe(
+        tap(data => console.log('updateProject: ' + project.projectId)),
+        catchError(this.handleError)
+      );
+  }
   private initializeProject(): IProject {
     // Return an initialized object
     return {

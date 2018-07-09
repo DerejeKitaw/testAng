@@ -2,6 +2,7 @@ ng g module projects --routing
 
 ng g c projects/projectList -d
 ng g c projects/projectDetail -d
+ng g c projects/projectEdit -d
 
 ng g service projects/project
 ng g service projects/projectParameter

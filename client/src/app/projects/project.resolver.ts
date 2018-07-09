@@ -13,9 +13,12 @@ import { ProjectService } from './project.service';
 export class ProjectResolver implements Resolve<IProject> {
   constructor(private projectService: ProjectService) {}
 
-  resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProject> {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<IProject> {
     const id = route.paramMap.get('id');
-    console.log(route);
+    console.log('route ' + route);
     return this.projectService.getProject(+id);
   }
 }
