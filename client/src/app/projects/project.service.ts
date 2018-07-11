@@ -65,6 +65,7 @@ export class ProjectService {
 
   saveProject(project: IProject): Observable<IProject> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.log('---project----: ' + project);
     if (project.projectId === '0') {
       return this.createProject(project, headers);
     }
@@ -81,8 +82,10 @@ export class ProjectService {
   }
 
   private updateProject(project: IProject, headers: HttpHeaders): Observable<IProject> {
+    console.log('service.updateProject: ' + JSON.stringify(project));
     const url = `${this._projectsUrl}/${project.projectId}`;
-    return this._http.put<IProject>(url, project, { headers: headers })
+    // console.log('url: ' + url); // url: api/projects/1246
+    return this._http.post<IProject>(url, project, { headers: headers })
       .pipe(
         tap(data => console.log('updateProject: ' + project.projectId)),
         catchError(this.handleError)

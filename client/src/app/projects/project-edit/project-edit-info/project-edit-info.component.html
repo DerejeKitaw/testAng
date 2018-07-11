@@ -3,10 +3,10 @@
     <fieldset>
       <legend>Basic Project Information</legend>
       <div class="form-group" [ngClass]="{'has-error': (customerName.touched || customerName.dirty) && !customerName.valid }">
-        <label class="col-md-2 control-label" for="inputcustomerName">Project Title</label>
+        <label class="col-md-2 control-label" for="customerName">Customer Name</label>
 
         <div class="col-md-8">
-          <input class="form-control" id="inputcustomerName" type="text" placeholder="Title (required)" required minlength="3" maxlength="50"
+          <input class="form-control" id="customerName" type="text" placeholder="Customer Name (required)" required minlength="3" maxlength="50"
             [(ngModel)]="project.customerName" name="customerName" #customerName="ngModel" />
           <span class="help-block" *ngIf="(customerName.touched || customerName.dirty) && customerName.errors">
             <span *ngIf="customerName.errors.required">

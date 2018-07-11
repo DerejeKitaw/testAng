@@ -10,93 +10,111 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./project-edit.component.scss']
 })
 export class ProjectEditComponent implements OnInit {
-  pageTitle = 'Project Edit';
-  errorMessage: string;
+    pageTitle = 'Project Edit';
+    errorMessage: string;
 
-  private currentProject: IProject;
-  private originalProject: IProject;
-  private dataIsValid: { [key: string]: boolean } = {};
+    private currentProject: IProject;
+    private originalProject: IProject;
+    private dataIsValid: { [key: string]: boolean } = {};
 
-  get isDirty(): boolean {
-      return JSON.stringify(this.originalProject) !== JSON.stringify(this.currentProject);
-  }
+    get isDirty(): boolean {
+        return JSON.stringify(this.originalProject) !== JSON.stringify(this.currentProject);
+    }
 
-  get project(): IProject {
-      return this.currentProject;
-  }
-  set project(value: IProject) {
-      this.currentProject = value;
-      // Clone the object to retain a copy
-      this.originalProject = Object.assign({}, value);
-  }
+    get project(): IProject {
+        return this.currentProject;
+    }
+    set project(value: IProject) {
+        this.currentProject = value;
+        // Clone the object to retain a copy
+        this.originalProject = Object.assign({}, value);
+    }
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private projectService: ProjectService) { }
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private projectService: ProjectService) { }
 
-  ngOnInit(): void {
-      // Watch for changes to the resolve data
-      this.route.data.subscribe(data => {
-        console.log(data);
-          this.onProjectRetrieved(data['project']);
-      });
-  }
+    ngOnInit(): void {
+        // Watch for changes to the resolve data
+        this.route.data.subscribe(data => {
+            // console.log('route data is Data' + JSON.stringify(data));
+            this.onProjectRetrieved(data['project']);
+        });
+    }
 
-  onProjectRetrieved(project: IProject): void {
-      this.project = project;
+    onProjectRetrieved(project: IProject): void {
+        this.project = project[0];
+        console.log('onProjectRetrieved ' + JSON.stringify(this.project));
+        // Adjust the customerName
+        if (this.project.projectId === '0') {
+            this.pageTitle = 'Add Project';
+        } else {
+            this.pageTitle = `Edit Project: ${this.project.customerName}`;
+        }
+    }
 
-      // Adjust the title
-      if (this.project.projectId === '0') {
-          this.pageTitle = 'Add Project';
-      } else {
-          this.pageTitle = `Edit Project: ${this.project.customerName}`;
-      }
-  }
+    deleteProject(): void {
+        if (this.project.projectId === '0') {
+            // Don't delete, it was never saved.
+            this.onSaveComplete(`${this.project.customerName} was deleted`);
+        } else {
+            if (confirm(`Really delete the project: ${this.project.customerName}?`)) {
+                this.projectService.deleteProject(this.project.projectId).subscribe(
+                    () => this.onSaveComplete(`${this.project.customerName} was deleted`)
+                );
+            }
+        }
+    }
 
-  deleteProject(): void {
-      if (this.project.projectId === '0') {
-          // Don't delete, it was never saved.
-          this.onSaveComplete(`${this.project.customerName} was deleted`);
-      } else {
-          if (confirm(`Really delete the project: ${this.project.customerName}?`)) {
-              this.projectService.deleteProject(this.project.projectId).subscribe(
-                  () => this.onSaveComplete(`${this.project.customerName} was deleted`)
-              );
-          }
-      }
-  }
+    isValid(path?: string): boolean {
+        this.validate();
+        // if (path) {
+        //     return this.dataIsValid[path];
+        // }
+        return (this.dataIsValid &&
+            Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
+    }
 
-  isValid(path?: string): boolean {
-      // this.validate();
-      if (path) {
-          return this.dataIsValid[path];
-      }
-      return (this.dataIsValid &&
-          Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
-  }
+    saveProject(): void {
+        if (this.isValid()) {
+            this.projectService.saveProject(this.project).subscribe(
+                () => this.onSaveComplete(`${this.project.customerName} was saved`)
+            );
+        } else {
+            this.errorMessage = 'Please correct the validation errors.';
+        }
+    }
 
-  saveProject(): void {
-      if (this.isValid()) {
-          this.projectService.saveProject(this.project).subscribe(
-              () => this.onSaveComplete(`${this.project.customerName} was saved`)
-          );
-      } else {
-          this.errorMessage = 'Please correct the validation errors.';
-      }
-  }
+    onSaveComplete(message?: string): void {
+        console.log(message);
+        this.reset();
+        // Navigate back to the project list
+        this.router.navigate(['/projects']);
+    }
 
-  onSaveComplete(message?: string): void {
-      console.log(message);
-      this.reset();
-      // Navigate back to the project list
-      this.router.navigate(['/projects']);
-  }
+    // Reset the data
+    // Required after a save so the data is no longer seen as dirty.
+    reset(): void {
+        this.dataIsValid = null;
+        this.currentProject = null;
+        this.originalProject = null;
+    }
 
-  // Reset the data
-  // Required after a save so the data is no longer seen as dirty.
-  reset(): void {
-      this.dataIsValid = null;
-      this.currentProject = null;
-      this.originalProject = null;
-  }
+    validate(): void {
+        // Clear the validation object
+        this.dataIsValid = {};
+
+        // 'info' tab
+        if (this.project.customerName &&
+            this.project.customerName.length >= 3 &&
+            this.project.customerName.length <= 50
+            ) {
+            this.dataIsValid['info'] = true;
+        } else {
+            // console.log(this.project.customerName);
+            // console.log('dataIsValid is not valid');
+            this.dataIsValid['info'] = false;
+        }
+
+    }
 }

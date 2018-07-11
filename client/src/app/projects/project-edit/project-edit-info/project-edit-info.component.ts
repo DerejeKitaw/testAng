@@ -18,7 +18,10 @@ export class ProjectEditInfoComponent implements OnInit {
 
   ngOnInit(): void {
       this.route.parent.data.subscribe(data => {
-          this.project = data['project'];
+        // console.log('data from project edit info' + JSON.stringify(data));
+
+        this.project = data['project'][0];
+        // console.log('data from project edit info' + JSON.stringify(this.project));
 
           if (this.projectForm) {
               this.projectForm.reset();

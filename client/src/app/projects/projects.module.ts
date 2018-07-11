@@ -11,10 +11,11 @@ import { ProjectParameterService } from './project-parameter.service';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectEditInfoComponent } from './project-edit/project-edit-info/project-edit-info.component';
 import { ProjectEditTagsComponent } from './project-edit/project-edit-tags/project-edit-tags.component';
+import { ProjectEditGuard } from './project-edit/project-edit.guard';
 
 @NgModule({
   imports: [SharedModule, ProjectsRoutingModule],
   declarations: [ProjectListComponent, ProjectDetailComponent, ProjectEditComponent, ProjectEditInfoComponent, ProjectEditTagsComponent],
-  providers: [ProjectService, ProjectResolver, ProjectParameterService]
+  providers: [ProjectService, ProjectResolver, ProjectParameterService, ProjectEditGuard]
 })
 export class ProjectsModule {}
