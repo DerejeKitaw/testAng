@@ -9,6 +9,7 @@ import { ShellComponent } from './home/shell/shell.component';
 import { WelcomeComponent } from './home/welcome/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 import { MenuComponent } from './home/menu/menu.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MenuComponent } from './home/menu/menu.component';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     HttpClientModule,
     AppRoutingModule,
     ProjectsModule

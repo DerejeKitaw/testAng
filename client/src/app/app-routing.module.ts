@@ -5,6 +5,7 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 import { ProjectsModule } from './projects/projects.module';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
+import { SignupComponent } from './shared/auth/signup/signup.component';
 
 // export function loadProjectsModule() { return ProjectsModule; }
 
@@ -33,6 +34,7 @@ const routes: Routes = [
             loadChildren: _projectModuleLoader
             // loadChildren: () => ProjectsModule
         },
+        { path: 'signup', component: SignupComponent },
         { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     ]
 },

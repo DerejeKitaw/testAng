@@ -16,3 +16,5 @@ ng g c home/PageNotFound -d
 ng g c home/menu -d
 
 ng g module shared -d
+ng g c shared/auth/signup
+ng g c shared/auth/signin
