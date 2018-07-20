@@ -79,8 +79,8 @@ router.post(
       customerName: req.body.customerName,
       jobType: req.body.jobType,
       systemPower: req.body.systemPower,
-      adress1: req.body.adress1,
-      adress2: req.body.adress2,
+      address1: req.body.address1,
+      address2: req.body.address2,
       drawingDate: req.body.drawingDate
     });
 
@@ -115,6 +115,8 @@ router.post(
     // TODO: Add all fields
     projectField.projectId = req.params.id;
     if (req.body.customerName){ projectField.customerName = req.body.customerName;}
+    if (req.body.address1){ projectField.address1 = req.body.address1;}
+    if (req.body.address2){ projectField.address2 = req.body.address2;}
 
     Project.find().then(projects => {
       // res.json({ msg: projects }) // return all projects with _id

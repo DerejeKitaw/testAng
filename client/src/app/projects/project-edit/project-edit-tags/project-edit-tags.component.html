@@ -1,3 +1,64 @@
-<p>
-  project-edit-tags works!
-</p>
+<div class="panel-body">
+  <form class="form-horizontal" novalidate #projectForm="ngForm">
+    <fieldset>
+      <legend>Basic Project Information</legend>
+      <div class="form-group" [ngClass]="{'has-error': (customerName.touched || customerName.dirty) && !customerName.valid }">
+        <label class="col-md-2 control-label" for="customerName">Customer Name</label>
+
+        <div class="col-md-8">
+          <input class="form-control" id="customerName" type="text" placeholder="Customer Name (required)" required minlength="3" maxlength="50"
+            [(ngModel)]="project.customerName" name="customerName" #customerName="ngModel" />
+          <span class="help-block" *ngIf="(customerName.touched || customerName.dirty) && customerName.errors">
+            <span *ngIf="customerName.errors.required">
+              Please enter a project customerName.
+            </span>
+            <span *ngIf="customerName.errors.minlength">
+              The project customerName must be at least 3 characters.
+            </span>
+            <span *ngIf="customerName.errors.maxlength">
+              The project customerName cannot exceed 50 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Address 1 Start-->
+      <div class="form-group" [ngClass]="{'has-error': (adress1.touched || adress1.dirty) && !adress1.valid }">
+        <label class="col-md-2 control-label" for="adress1">Customer Name</label>
+      
+        <div class="col-md-8">
+          <input class="form-control" id="adress1" type="text" placeholder="Adress 1 (required)" required  maxlength="50"
+            [(ngModel)]="project.adress1" name="adress1" #adress1="ngModel" />
+          <span class="help-block" *ngIf="(adress1.touched || adress1.dirty) && adress1.errors">
+            <span *ngIf="adress1.errors.required">
+              Please enter a project adress1.
+            </span>
+            <span *ngIf="adress1.errors.maxlength">
+              The project adress1 cannot exceed 50 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+      <!-- Address 1 End -->
+      <!-- Address 2 End -->
+      <div class="form-group" [ngClass]="{'has-error': (adress2.touched || adress2.dirty) && !adress2.valid }">
+        <label class="col-md-2 control-label" for="adress2">Customer Name</label>
+      
+        <div class="col-md-8">
+          <input class="form-control" id="adress2" type="text" placeholder="Adress 1 (required)" required  maxlength="50"
+            [(ngModel)]="project.adress2" name="adress2" #adress2="ngModel" />
+          <span class="help-block" *ngIf="(adress2.touched || adress2.dirty) && adress2.errors">
+            <span *ngIf="adress2.errors.required">
+              Please enter a project adress2.
+            </span>
+            <span *ngIf="adress2.errors.maxlength">
+              The project adress2 cannot exceed 50 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+      <!-- Address 2 End -->
+      <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+    </fieldset>
+  </form>
+</div>

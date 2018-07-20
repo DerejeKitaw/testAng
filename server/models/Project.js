@@ -142,10 +142,10 @@ const ProjectsSchema = new Schema({
   systemPower: {
     type: Number
   },
-  adress1: {
+  address1: {
     type: String
   },
-  adress2: {
+  address2: {
     type: String
   },
   drawingDate: {

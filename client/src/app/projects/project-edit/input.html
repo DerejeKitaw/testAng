@@ -1,0 +1,16 @@
+<div class="form-group" [ngClass]="{'has-error': (adress2.touched || adress2.dirty) && !adress2.valid }">
+  <label class="col-md-2 control-label" for="adress2">Customer Name</label>
+
+  <div class="col-md-8">
+    <input class="form-control" id="adress2" type="text" placeholder="Adress 1 (required)" required  maxlength="50"
+      [(ngModel)]="project.adress2" name="adress2" #adress2="ngModel" />
+    <span class="help-block" *ngIf="(adress2.touched || adress2.dirty) && adress2.errors">
+      <span *ngIf="adress2.errors.required">
+        Please enter a project adress2.
+      </span>
+      <span *ngIf="adress2.errors.maxlength">
+        The project adress2 cannot exceed 50 characters.
+      </span>
+    </span>
+  </div>
+</div>
