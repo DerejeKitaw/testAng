@@ -4,80 +4,46 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, throwError, of } from 'rxjs';
+import { IUser } from './user';
+import { ProjectService } from '../projects/project.service';
 
 @Injectable()
 export class AuthService {
   token: string;
-
-  constructor(private router: Router, private http: HttpClient) {}
-
-  signupUser(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .catch(
-        error => console.log(error)
-      );
-  }
-
-  // signinUser(email: string, password: string) {
-  //   firebase.auth().signInWithEmailAndPassword(email, password)
-  //     .then(
-  //       response => {
-  //         this.router.navigate(['/']);
-  //         firebase.auth().currentUser.getIdToken()
-  //           .then(
-  //             (token: string) => this.token = token
-  //           );
-  //       }
-  //     )
-  //     .catch(
-  //       error => console.log(error)
-  //     );
-  // }
-
-
+  currentUser: IUser;
+  redirectUrl: string;
+  constructor(
+    // private router: Router,
+    private http: HttpClient,
+    // private projectService: ProjectService
+  ) {}
+  isLoggedIn(): boolean {
+    return !!this.currentUser;
+}
   signinUser(email: string, password: string) {
-    console.log('---signinUser---');
+    // console.log('---signinUser---');
     return this.http.post<any>('/api/users/login', { email: email, password: password })
     .subscribe(
-      (data) => {
-        console.log(data);
-        this.token = data.token;
-        if (localStorage.jwtToken) {
-
-          localStorage.removeItem('jwtToken');
+      (userData) => {
+        console.log('userData ' + userData);
+        if ( userData.token) {
+          if (localStorage.jwtToken) {
+            localStorage.removeItem('jwtToken');
+          }
+          localStorage.setItem('jwtToken', userData.token);
         }
-        localStorage.setItem('jwtToken', data.token);
+        this.token = userData.token;
+
       }
     );
-    // .pipe(
-    //   tap(data => console.log('All: ' + JSON.stringify(data))),
-    //   catchError(this.handleError)
-    // );
-    // .pipe(map(user => {
-    //   console.log('---signinUser---' + user);
-    //         // login successful if there's a jwt token in the response
-    //         if (user && user.token) {
-    //             // store user details and jwt token in local storage to keep user logged in between page refreshes
-    //             localStorage.setItem('currentUser', JSON.stringify(user));
-    //         }
-
-    //         return user;
-    //     }));
 }
 
   logout() {
-    firebase.auth().signOut();
-    this.token = null;
+  // Remove token from localStorage
+  localStorage.removeItem('jwtToken');
+  // Remove auth header for future requests
+  this.token = null;
   }
-
-  // getToken() {
-  //   firebase.auth().currentUser.getIdToken()
-  //     .then(
-  //       (token: string) => this.token = token
-  //     );
-  //     console.log(this.token);
-  //   return this.token;
-  // }
 
   isAuthenticated() {
     return this.token != null;

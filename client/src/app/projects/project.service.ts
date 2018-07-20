@@ -19,12 +19,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ProjectService implements OnInit {
-  httpOptions = {
-     headers: new HttpHeaders({
-       'Content-Type':  'application/json',
-       'Authorization':  `Bearer ${this.token}`
-     })
-   };
+  // httpOptions = {
+  //    headers: new HttpHeaders({
+  //      'Content-Type':  'application/json',
+  //      'Authorization':  `Bearer ${this.token}`
+  //    })
+  //  };
   projects: IProject[];
   token;
   private _projectsUrl = 'api/projects';
@@ -84,15 +84,17 @@ export class ProjectService implements OnInit {
   }
   // .set('Authorization', `Bearer ${token}`)
   saveProject(project: IProject): Observable<IProject> {
-    const token = localStorage.jwtToken;
-    // console.log('---saveProject---' + token);
-    httpOptions.headers = httpOptions.headers.set('Authorization', token);
-    const url = `${this._projectsUrl}/${project.projectId}`;
-    // console.log('---updateProject---' + JSON.stringify(httpOptions));
-    return this._http.post<IProject>(url, project, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+    if (localStorage.jwtToken) {
+      const token = localStorage.jwtToken;
+      httpOptions.headers = httpOptions.headers.set('Authorization', token);
+      console.log('---saveProject---' + token);
+    }
+      const url = `${this._projectsUrl}/${project.projectId}`;
+      // console.log('---updateProject---' + JSON.stringify(httpOptions));
+      return this._http.post<IProject>(url, project, httpOptions)
+        .pipe(
+          catchError(this.handleError)
+        );
   }
 
   private createProject(project: IProject,

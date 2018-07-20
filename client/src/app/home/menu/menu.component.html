@@ -33,6 +33,9 @@
     <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <a class="nav-link" routerLink='/signin'>Login</a>
   </li>
+    <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" id="linkLogout" (click)="onLogout()">LogOut</a>
+  </li>
 </ul>
   </div>
 </nav>

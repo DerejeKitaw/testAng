@@ -79,7 +79,10 @@ export class ProjectEditComponent implements OnInit {
         if (this.isValid()) {
 
             this.projectService.saveProject(this.project).subscribe(
-                () => this.onSaveComplete(`${this.project.customerName} was saved`)
+                (data) => {
+                    console.log(data);
+                    this.onSaveComplete(`${this.project.customerName} was saved`);
+                }
             );
         } else {
             this.errorMessage = 'Please correct the validation errors.';
