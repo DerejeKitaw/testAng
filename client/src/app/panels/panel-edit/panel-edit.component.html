@@ -1,0 +1,147 @@
+<a routerLink='/panels'>
+    Back</a>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <div class="panel-body" *ngIf="panel">
+        <form class="form-horizontal" novalidate [formGroup]="editForm" (ngSubmit)="savePanel()">
+            <fieldset>
+                <div class="form-group" [ngClass]="{'has-error': formError.manufacturer }">
+                    <label class="col-md-2 control-label" for="inputPanelManufacturer">Panel Manufacturer</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputPanelManufacturer" type="text" placeholder="Panels Manufacturer (required)" formControlName="manufacturer"
+                        />
+                        <span class="help-block" *ngIf="formError.manufacturer">
+                            {{formError.manufacturer}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{'has-error': formError.panelType }">
+                    <label class="col-md-2 control-label" for="inputPanelType">Panel Type</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputPanelType" type="text" placeholder="Panels Type (required)" formControlName="panelType"
+                        />
+                        <span class="help-block" *ngIf="formError.panelType">
+                            {{formError.panelType}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{'has-error': formError.power }">
+                    <label class="col-md-2 control-label" for="inputPanelPower">Panel Power</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputPanelPower" type="text" placeholder="Panels Power (required)" formControlName="power"
+                        />
+                        <span class="help-block" *ngIf="formError.power">
+                            {{formError.power}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{'has-error': formError.vmp}">
+                    <label class="col-md-2 control-label" for="inputVmp">Vmp</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputVmp" type="text" placeholder="Rating" formControlName="vmp" />
+                        <span class="help-block" *ngIf="formError.vmp">
+                            {{formError.vmp}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{'has-error': formError.imp}">
+                    <label class="col-md-2 control-label" for="inputImp">Imp</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputImp" type="text" placeholder="Rating" formControlName="imp" />
+                        <span class="help-block" *ngIf="formError.imp">
+                            {{formError.imp}}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group" [ngClass]="{'has-error': formError.voc}">
+                    <label class="col-md-2 control-label" for="inputVoc">Voc</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputVoc" type="text" placeholder="Rating" formControlName="voc" />
+                        <span class="help-block" *ngIf="formError.voc">
+                            {{formError.voc}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': formError.isc}">
+                    <label class="col-md-2 control-label" for="inputIsc">Isc</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputIsc" type="text" placeholder="Rating" formControlName="isc" />
+                        <span class="help-block" *ngIf="formError.isc">
+                            {{formError.isc}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': formError.vocTempCoef}">
+                    <label class="col-md-2 control-label" for="inputVocTempCoef">VocTempCoef</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputVocTempCoef" type="text" placeholder="Rating" formControlName="vocTempCoef" />
+                        <span class="help-block" *ngIf="formError.vocTempCoef">
+                            {{formError.vocTempCoef}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': formError.vmpTempCoef}">
+                    <label class="col-md-2 control-label" for="inputVmpTempCoef">VmpTempCoef</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputVmpTempCoef" type="text" placeholder="Rating" formControlName="vmpTempCoef" />
+                        <span class="help-block" *ngIf="formError.vmpTempCoef">
+                            {{formError.vmpTempCoef}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': formError.iscTempCoef}">
+                    <label class="col-md-2 control-label" for="inputiscTempCoef">iscTempCoef</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" id="inputiscTempCoef" type="text" placeholder="Rating" formControlName="iscTempCoef" />
+                        <span class="help-block" *ngIf="formError.iscTempCoef">
+                            {{formError.iscTempCoef}}
+                        </span>
+                    </div>
+                </div>
+                <!-- <div class="form-group" [ngClass]="{'has-error': formError.description}">
+                    <label class="col-md-2 control-label" for="inputPanelDescription">Description</label>
+
+                    <div class="col-md-8">
+                        <textarea class="form-control" id="inputPanelDescription" placeholder="Description" rows=3 formControlName="description"></textarea>
+                        <span class="help-block" *ngIf="formError.description">
+                            {{ formError.description}}
+                        </span>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary" type="submit" style="width:80px;margin-right:10px" [disabled]='!editForm.valid'>
+                                Save
+                            </button>
+                        </span>
+                        <span>
+                            <a class="btn btn-default" style="width:80px" [routerLink]="['/panels']">
+                                Cancel
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

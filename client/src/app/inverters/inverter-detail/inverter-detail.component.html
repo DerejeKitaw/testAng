@@ -1,0 +1,54 @@
+
+<a routerLink='/inverters'>Back</a>
+<div>Inv = {{inverter$}}</div>
+<div class="panel panel-default"  *ngIf="inverter$ | async as inverter">
+    <!-- Default inverter contents -->
+    <div class="panel-heading">
+        {{ pageTitle + ": " + inverter.inverterType }}
+    </div>
+
+    <div class="panel-body">
+        <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+        <div class="row">
+            <div class="col-md-2">Inverter Type: </div>
+            <div class="col-md-10">{{ inverter.inverterType }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Inverter Manufacturer: </div>
+            <div class="col-md-10">{{ inverter.inverterManufacturer }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Max Power Output</div>
+            <div class="col-md-10">{{ inverter.maxPowerOutput}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">AC Output Voltage</div>
+            <div class="col-md-10">{{ inverter.acOutputVoltage}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Max AC Current Output</div>
+            <div class="col-md-10">{{ inverter.maxAcCurrentOutput}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Max Dc Voltage</div>
+            <div class="col-md-10">{{inverter.maxDcVoltage}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">startupVoltage</div>
+            <div class="col-md-10">{{inverter.startupVoltage}}</div>
+        </div>
+        
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-default" (click)="onBack()" style="width:80px">
+            <i class="glyphicon glyphicon-chevron-left"></i> Back
+        </a>
+        <a class="btn btn-primary" style="width:80px;margin-left:10px" [routerLink]="['/inverter', inverter.id, 'edit']">
+            Edit
+        </a>
+    </div>
+  </div>
+
+

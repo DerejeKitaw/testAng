@@ -1,0 +1,13 @@
+      <!-- Select Panel Start-->
+      <div class="form-group" [ngClass]="{'has-error': (PanelId.touched || PanelId.dirty) && !PanelId.valid }">
+        <label class="col-md-2 control-label" for="PanelId">Select Panel</label>
+        <div class="col-sm-8 col-md-4">
+          <select id="PanelId" #PanelId="ngModel" class="hideLabel form-control" [(ngModel)]="id" name="PanelId" (change)="selectPanel();">
+            <option selected="" value=""></option>
+            <option [ngValue]="k.id" *ngFor="let k of inverterList">
+              {{k.inverterType}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- Select Panel End -->

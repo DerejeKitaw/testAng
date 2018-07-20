@@ -1,0 +1,38 @@
+[
+    {   
+        "id":1,
+        "inverterManufacturer": "SOLAREDGE",
+        "inverterType": "SE3800A-US",
+        "maxDcVoltage": "500",
+        "nominalDcInputVoltage": "350",
+        "maxPowerOutput": "3800",
+        "acOutputVoltage": "240",
+        "maxAcCurrentOutput": "16",
+        "startupVoltage": "256",
+        "cec": "97.5"  
+    },
+    {   
+        "id":2,
+        "inverterManufacturer": "SOLAREDGE",
+        "inverterType": "SE10000A-US",
+        "maxPowerOutput": "10000",
+        "nominalDcInputVoltage": "350",
+        "acOutputVoltage": "240",
+        "maxAcCurrentOutput": "47.8",
+        "maxDcVoltage": "500",
+        "startupVoltage": "",
+        "cec": "97.5"  
+    },
+    {   
+        "id":3,
+        "inverterManufacturer": "SOLAREDGE",
+        "inverterType": "SE11000A-US",
+        "maxPowerOutput": "11000",
+        "nominalDcInputVoltage": "350",
+        "acOutputVoltage": "240",
+        "maxAcCurrentOutput": "47.3",
+        "maxDcVoltage": "500",
+        "startupVoltage": "",
+        "cec": "96.3"  
+    }
+]

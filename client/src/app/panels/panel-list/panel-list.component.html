@@ -1,0 +1,66 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <!-- <div class="row" [hidden]="!listFilter">
+        <div class="panel-heading">{{pageTitle}}
+        <div class="col-md-6">
+            <h3>Panel filtered by {{listFilter}}</h3>
+        </div>
+    </div> 
+    </div>-->
+    <div class="panel-body">
+        <div class="column">
+
+            <div class="row">
+                <div class="col-md-1 left">Filter by:</div>
+                <div class="col-md-2">
+                    <input type="text" [(ngModel)]="listFilter" />
+                </div>
+                <div class="col-md-2" >Panel filtered by {{listFilter}}</div>
+            </div>
+            
+        </div>
+    </div>
+  
+    <!-- Table -->
+    <div class="has-error" *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    
+            <div class="table-responsive">
+                <table class="table" *ngIf="panels && panels.length">
+                    <thead>
+                        <tr>
+                            <td>Panels Type</td>
+                            <td>Panels Manufacturer</td>
+                            <td>Vmp</td>
+                            <td>Power</td>
+                            <td>Imp</td>
+                            <td>Voc</td>
+                            <td>Isc</td>
+                            <td>Voc Temp Coef</td>
+                            <td>Vmp Temp Coef</td>
+                            <td>Isc Temp Coef</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let panel of filteredPanels'>
+                            <td><a [routerLink]="['/panel', panel.id]">{{ panel.panelType }}</a></td>
+                            <td>{{ panel.panelsManufacturer }}</td>
+                            <td>{{ panel.vmp }}</td>
+                            <td>{{ panel.power}}</td>
+                            <td>{{ panel.imp}}</td>
+                
+                            <td>{{ panel.voc}}</td>
+                            <td>{{ panel.isc}}</td>
+                            <td>{{ panel.vocTempCoef}}</td>
+                            <td>{{ panel.vmpTempCoef}}</td>
+                            <td>{{ panel.iscTempCoef}}</td>
+                            <td>
+                                    <a class="btn btn-primary" 
+                                       [routerLink]="['/panel', panel.id, 'edit']">
+                                        Edit
+                                    </a>
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+  </div>

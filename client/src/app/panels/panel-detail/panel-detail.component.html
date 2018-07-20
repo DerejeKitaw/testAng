@@ -1,0 +1,53 @@
+
+<a routerLink='/panels'>Back</a>
+<div class="panel panel-default"  *ngIf="panel$ | async as panel">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+        {{ pageTitle + ": " + panel.panelType }}
+    </div>
+
+    <div class="panel-body">
+        <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+        <div class="row">
+            <div class="col-md-2">panelType: </div>
+            <div class="col-md-10">{{ panel.panelType }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">power: </div>
+            <div class="col-md-10">{{ panel.power }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">vmp</div>
+            <div class="col-md-10">{{ panel.vmp}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">imp</div>
+            <div class="col-md-10">{{ panel.imp}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">voc</div>
+            <div class="col-md-10">{{ panel.voc}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">isc</div>
+            <div class="col-md-10">{{panel.isc}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">vocTempCoef</div>
+            <div class="col-md-10">{{panel.vocTempCoef}}</div>
+        </div>
+        
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-default" (click)="onBack()" style="width:80px">
+            <i class="glyphicon glyphicon-chevron-left"></i> Back
+        </a>
+        <a class="btn btn-primary" style="width:80px;margin-left:10px" [routerLink]="['/panel', panel.id, 'edit']">
+            Edit
+        </a>
+    </div>
+  </div>
+
+

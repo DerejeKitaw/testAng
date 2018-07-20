@@ -1,0 +1,61 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!-- <div class="row" [hidden]="!listFilter">
+      <div class="panel-heading">{{pageTitle}}
+      <div class="col-md-6">
+          <h3>Inverter filtered by {{listFilter}}</h3>
+      </div>
+  </div> 
+  </div>-->
+  <div class="panel-body">
+      <div class="column">
+
+          <div class="row">
+              <div class="col-md-1 left">Filter by:</div>
+              <div class="col-md-2">
+                  <input type="text" [(ngModel)]="listFilter" />
+              </div>
+              <div class="col-md-2" >Inverter filtered by {{listFilter}}</div>
+          </div>
+          
+      </div>
+  </div>
+
+  <!-- Table -->
+  <div class="has-error" *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+  
+          <div class="table-responsive">
+              <table class="table" *ngIf="inverters && inverters.length">
+                  <thead>
+                      <tr>
+                          <td>Inverters Type</td>
+                          <td>Inverters Manufacturer</td>
+                          <td>Max Power Output</td>
+                          <td>AC Output Voltage</td>
+                          <td>Max Ac Current Output</td>
+                          <td>Mazimum DC Voltage</td>
+                          <td>Startup Voltage</td>
+                          <td>CEC</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor='let inverter of filteredInverters'>
+                          <td><a [routerLink]="['/inverter', inverter.id]">{{ inverter.inverterType }}</a></td>
+                          <td>{{ inverter.inverterManufacturer }}</td>
+                          <td>{{ inverter.maxPowerOutput }}</td>
+                          <td>{{ inverter.acOutputVoltage}}</td>
+                          <td>{{ inverter.maxAcCurrentOutput}}</td>
+                          <td>{{ inverter.maxDcVoltage}}</td>
+                          <td>{{ inverter.startupVoltage}}</td>
+                          <td>{{ inverter.cec}}</td>
+                          <td>
+                                  <a class="btn btn-primary" 
+                                     [routerLink]="['/inverter', inverter.id, 'edit']">
+                                      Edit
+                                  </a>
+                              </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+</div>
