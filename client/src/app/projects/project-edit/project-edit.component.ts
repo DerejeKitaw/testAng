@@ -44,7 +44,7 @@ export class ProjectEditComponent implements OnInit {
 
     onProjectRetrieved(project: IProject): void {
         this.project = project[0];
-        console.log('onProjectRetrieved ' + JSON.stringify(this.project));
+        // console.log('onProjectRetrieved ' + JSON.stringify(this.project));
         // Adjust the customerName
         if (this.project.projectId === '0') {
             this.pageTitle = 'Add Project';
@@ -77,6 +77,7 @@ export class ProjectEditComponent implements OnInit {
 
     saveProject(): void {
         if (this.isValid()) {
+
             this.projectService.saveProject(this.project).subscribe(
                 () => this.onSaveComplete(`${this.project.customerName} was saved`)
             );

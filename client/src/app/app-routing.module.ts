@@ -5,7 +5,8 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 import { ProjectsModule } from './projects/projects.module';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
-import { SignupComponent } from './shared/auth/signup/signup.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 // export function loadProjectsModule() { return ProjectsModule; }
 
@@ -35,6 +36,7 @@ const routes: Routes = [
             // loadChildren: () => ProjectsModule
         },
         { path: 'signup', component: SignupComponent },
+        { path: 'signin', component: SigninComponent },
         { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     ]
 },

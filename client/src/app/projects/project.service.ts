@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { IProject } from './project';
 import {
   HttpClient,
@@ -8,30 +8,51 @@ import {
 import { Http } from '@angular/http';
 import { Observable, throwError, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
-
+import { AuthService } from '../auth/auth.service';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
+export class ProjectService implements OnInit {
+  httpOptions = {
+     headers: new HttpHeaders({
+       'Content-Type':  'application/json',
+       'Authorization':  `Bearer ${this.token}`
+     })
+   };
   projects: IProject[];
+  token;
   private _projectsUrl = 'api/projects';
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private authService: AuthService) {}
+  ngOnInit(): void {
+    if (localStorage.jwtToken) {
+      this.token = localStorage.jwtToken;
+
+    }
+    console.log('project service ngOninit' + localStorage.jwtToken );
+  }
 
   getProjects(): Observable<IProject[]> {
-    return this._http.get<IProject[]>(this._projectsUrl).pipe(
-      tap(data => console.log('All: ' + JSON.stringify(data))),
-      catchError(this.handleError)
+    return this._http.get<IProject[]>(this._projectsUrl)
+    .pipe(
+      // tap(data => console.log('All: ' + JSON.stringify(data))),
+       catchError(this.handleError)
     );
   }
   getProject(id: number): Observable<IProject> {
     // if (id === 0) {
     //   return of(this.initializeProject());
     // }
-    console.log(id);
+    // console.log(id);
     const url = `${this._projectsUrl}/${id}`;
     return this._http.get<IProject>(url).pipe(
-      tap(data => console.log('Data: ' + JSON.stringify(data))),
-      catchError(this.handleError)
+      // tap(data => console.log('Data: ' + JSON.stringify(data))),
+       catchError(this.handleError)
     );
   }
   private handleError(err) {
@@ -56,40 +77,45 @@ export class ProjectService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     const url = `${this._projectsUrl}/${id}`;
-    return this._http.delete<IProject>(url, { headers: headers })
+    return this._http.delete<IProject>(url, { headers: headers }).pipe(
+      tap(data => console.log('deleteProject: ' + id)),
+      catchError(this.handleError)
+    );
+  }
+  // .set('Authorization', `Bearer ${token}`)
+  saveProject(project: IProject): Observable<IProject> {
+    const token = localStorage.jwtToken;
+    // console.log('---saveProject---' + token);
+    httpOptions.headers = httpOptions.headers.set('Authorization', token);
+    const url = `${this._projectsUrl}/${project.projectId}`;
+    // console.log('---updateProject---' + JSON.stringify(httpOptions));
+    return this._http.post<IProject>(url, project, httpOptions)
       .pipe(
-        tap(data => console.log('deleteProject: ' + id)),
         catchError(this.handleError)
       );
   }
 
-  saveProject(project: IProject): Observable<IProject> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log('---project----: ' + project);
-    if (project.projectId === '0') {
-      return this.createProject(project, headers);
-    }
-    return this.updateProject(project, headers);
-  }
-
-  private createProject(project: IProject, headers: HttpHeaders): Observable<IProject> {
+  private createProject(project: IProject,
+    headers: HttpHeaders
+  ): Observable<IProject> {
     project.projectId = undefined;
-    return this._http.post<IProject>(this._projectsUrl, project, { headers: headers })
+    return this._http
+      .post<IProject>(this._projectsUrl, project, { headers: headers })
       .pipe(
         tap(data => console.log('createProject: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
+  // return this.http.put('https://ng-recipe-book.firebaseio.com/projects.json?auth=' + token, this.projectService.getProjects());
 
   private updateProject(project: IProject, headers: HttpHeaders): Observable<IProject> {
-    console.log('service.updateProject: ' + JSON.stringify(project));
+    // console.log('service.updateProject: ' + JSON.stringify(project));
     const url = `${this._projectsUrl}/${project.projectId}`;
     // console.log('url: ' + url); // url: api/projects/1246
-    return this._http.post<IProject>(url, project, { headers: headers })
-      .pipe(
-        tap(data => console.log('updateProject: ' + project.projectId)),
-        catchError(this.handleError)
-      );
+    return this._http.post<IProject>(url, project, httpOptions).pipe(
+      tap(data => console.log('updateProject: ' + project.projectId)),
+      catchError(this.handleError)
+    );
   }
   private initializeProject(): IProject {
     // Return an initialized object
@@ -134,5 +160,10 @@ export class ProjectService {
       adress2: null,
       drawingDate: null
     };
+  }
+
+  setProjects(projects: IProject[]) {
+    this.projects = projects;
+    // this.projectsChanged.next(this.projects.slice());
   }
 }

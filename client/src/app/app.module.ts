@@ -10,6 +10,9 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 import { MenuComponent } from './home/menu/menu.component';
 import { SharedModule } from './shared/shared.module';
+import { AuthService } from './auth/auth.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,8 @@ import { SharedModule } from './shared/shared.module';
     WelcomeComponent,
     PageNotFoundComponent,
     MenuComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     ProjectsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
