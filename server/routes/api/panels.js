@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
 
+// Panel model
+const Panel = require('../../models/Panel');
 
 // @route   GET api/panels/test
 // @desc    Tests panels route
@@ -15,89 +17,73 @@ router.get('/test', (req, res) => res.json({ msg: 'Panel Works' }));
 // @desc   Get Panels
 // @access Public
 router.get('/', (req, res) => {
-  res.json(
-    [
-      {
-          "id":1,
-          "panelsManufacturer": "Trina",
-          "panelType": "TSM-300DD05A.08(II)",
-          "power": "300",
-          "vmp": "38.7",
-          "imp": "8.93",
-          "voc": "47.3",
-          "isc": "9.41",
-          "vocTempCoef": "0.3",
-          "vmpTempCoef": "0.29",
-          "iscTempCoef": "0.04"  ,
-          "maxSystemVoltage": "1000",  
-          "optimizerModel": "P320",  
-          "optimizerMaxDcVoltage": "48V",  
-          "optimizerMaxPowerOutput": "320W",  
-          "optimizerMaxDcCurrentOutput": "15",  
-          "optimizerMaxDcCurrentInput": "13.75"  
-          
-      },
-      {
-          "id":2,
-          "panelsManufacturer": "HANWHA",
-          "panelType": "REC 280 Q.PLUS BFR G4.1",
-          "power": "280",
-          "vmp": "31.67",
-          "imp": "8.84",
-          "voc": "38.97",
-          "isc": "9.41",
-          "vocTempCoef": "0.29",
-          "vmpTempCoef": "0.29",
-          "iscTempCoef": "0.04"  ,
-          "maxSystemVoltage": "1000",  
-          "optimizerModel": "P300",  
-          "optimizerMaxDcVoltage": "48V",  
-          "optimizerMaxPowerOutput": "300W",  
-          "optimizerMaxDcCurrentOutput": "15",  
-          "optimizerMaxDcCurrentInput": "12.5" 
-      }
-      ,
-      {
-          "id":3,
-          "panelsManufacturer": "HANWHA",
-          "panelType": "HANWHA 300 Q.PLUS BFR G4.1",
-          "power": "300",
-          "vmp": "31.67",
-          "imp": "8.84",
-          "voc": "38.97",
-          "isc": "9.41",
-          "vocTempCoef": "0.29",
-          "vmpTempCoef": "0.29",
-          "iscTempCoef": "0.04"  ,
-          "maxSystemVoltage": "1000",  
-          "optimizerModel": "P300",  
-          "optimizerMaxDcVoltage": "48V",  
-          "optimizerMaxPowerOutput": "300W",  
-          "optimizerMaxDcCurrentOutput": "600",  
-          "optimizerMaxDcCurrentInput": "600" 
-      }
-      ,
-      {
-          "id":4,
-          "panelsManufacturer": "HANWHA",
-          "panelType": "suniva 290 Q.PLUS BFR G4.1",
-          "power": "290",
-          "vmp": "33",
-          "imp": "8.84",
-          "voc": "38.97",
-          "isc": "8.41",
-          "vocTempCoef": "0.29",
-          "vmpTempCoef": "0.29",
-          "iscTempCoef": "0.04" ,
-          "maxSystemVoltage": "1000",  
-          "optimizerModel": "P300",  
-          "optimizerMaxDcVoltage": "48V",  
-          "optimizerMaxPowerOutput": "300W",  
-          "optimizerMaxDcCurrentOutput": "600",  
-          "optimizerMaxDcCurrentInput": "600" 
-      }
-  ]
-  );
+  Panel.find()
+    .sort({ date: -1 })
+    .then(panel => res.json(panel))
+    .catch(err => res.status(404).json({ msg: 'No panel found' }));
 });
 
+// @route   POST api/panels
+// @desc    POST panel
+// @access  Public
+router.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    // const { errors, isValid } = validatePanelInput(req.body);
+
+    // Check Validation
+    // if (!isValid) {
+    //   // If any errors, send 400 with errors object
+    //   return res.status(400).json(errors);
+    // }
+
+    const newPanel = new Panel({
+      panelId: req.body.panelId,
+      panelsManufacturer: req.body.panelsManufacturer,
+      panelType: req.body.panelType,
+      power: req.body.power,
+      vmp: req.body.vmp,
+      imp: req.body.imp,
+      voc: req.body.voc,
+      isc: req.body.isc,
+      vocTempCoef: req.body.vocTempCoef,
+      vmpTempCoef: req.body.vmpTempCoef,
+      iscTempCoef: req.body.iscTempCoef,
+      maxSystemVoltage: req.body.maxSystemVoltage
+      
+    });
+    newPanel.save().then(panel => res.json(panel));
+  }
+);
+
+// @route   GET api/panels/:id
+// @desc    Get panel by id
+// @access  Public
+router.get('/:id', (req, res) => {
+  Panel.find({ panelId: req.params.id })
+    .then(panel => res.json(panel))
+    .catch(err => res.status(404).json({ msg: 'No panel found with that ID' }));
+});
+
+// @route   DELETE api/panels/:_id
+// @desc    Delete panel
+// @access  Private
+router.delete(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Panel.findOneAndRemove({ _id: req.params.id })
+      .then(() => {
+        Panel.find()
+          .sort({ date: -1 })
+          .then(panel => res.json(panel))
+          .catch(err => res.status(404).json({ msg: 'No panel found' }));
+        // res.json({ success: true })
+      })
+      .catch(err => res.status(404).json({ msg: 'No panel found' }));
+  }
+);
+
+// router.delete('/a/:id', (req, res) => res.json({ _id: req.params.id}));
 module.exports = router;

@@ -1,0 +1,12 @@
+optimizerId:1
+optimizerModel:P300
+optimizerMaxDcVoltage:48
+optimizerMaxPowerOutput:300
+optimizerMaxDcCurrentOutput:15
+optimizerMaxDcCurrentInput:12.5
+
+optimizerModel: req.body.optimizerModel,
+optimizerMaxDcVoltage: req.body.optimizerMaxDcVoltage,
+optimizerMaxPowerOutput: req.body.optimizerMaxPowerOutput,
+optimizerMaxDcCurrentOutput: req.body.optimizerMaxDcCurrentOutput,
+optimizerMaxDcCurrentInput: req.body.optimizerMaxDcCurrentInput

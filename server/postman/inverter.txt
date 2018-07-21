@@ -1,0 +1,11 @@
+inverterId:1
+inverterManufacturer:SMA
+inverterModel:SB3000
+maxDcVoltage:600
+nominalDcInputVoltage:500
+inverterType:SB6000
+maxPowerOutput:6000
+acOutputVoltage:240
+maxAcCurrentOutput:41
+startupVoltage:140
+cec:97

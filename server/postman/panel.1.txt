@@ -1,0 +1,35 @@
+panelId:1
+panelsManufacturer:Trina
+panelType:TSM-300DD05A.08(II)
+power:300
+vmp:38.7
+imp:8.93
+voc:47.3
+isc:9.41
+vocTempCoef:0.3
+vmpTempCoef:0.29
+iscTempCoef:0.04
+maxSystemVoltage:1000
+optimizerModel:P320
+optimizerMaxDcVoltage:48V
+optimizerMaxPowerOutput:320W
+optimizerMaxDcCurrentOutput:15
+optimizerMaxDcCurrentInput:13.75
+
+panelId: req.body.panelId,
+panelsManufacturer: req.body.panelsManufacturer,
+panelType: req.body.panelType,
+power: req.body.power,
+vmp: req.body.vmp,
+imp: req.body.imp,
+voc: req.body.voc,
+isc: req.body.isc,
+vocTempCoef: req.body.vocTempCoef,
+vmpTempCoef: req.body.vmpTempCoef,
+iscTempCoef: req.body.iscTempCoef,
+maxSystemVoltage: req.body.maxSystemVoltage,
+optimizerModel: req.body.optimizerModel,
+optimizerMaxDcVoltage: req.body.optimizerMaxDcVoltage,
+optimizerMaxPowerOutput: req.body.optimizerMaxPowerOutput,
+optimizerMaxDcCurrentOutput: req.body.optimizerMaxDcCurrentOutput,
+optimizerMaxDcCurrentInput: req.body.optimizerMaxDcCurrentInput

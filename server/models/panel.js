@@ -46,6 +46,10 @@ const PanelSchema = new Schema({
   iscTempCoef: {
     type: Number,
     required: true
+  },
+  maxSystemVoltage: {
+    type: Number,
+    required: true
   }
 
 });
