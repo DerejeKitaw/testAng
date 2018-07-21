@@ -1,7 +1,7 @@
 
 /* Defines the Inverter entity */
 export interface IInverter {
-    id: number;
+    inverterId: number;
     inverterManufacturer: string;
     inverterType: string;
     maxDcVoltage: number;

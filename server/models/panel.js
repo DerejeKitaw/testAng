@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const UserSchema = new Schema({
+const PanelSchema = new Schema({
   panelId: {
     type: String,
     required: true,
@@ -50,4 +50,4 @@ const UserSchema = new Schema({
 
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = Panel = mongoose.model('panels', PanelSchema);

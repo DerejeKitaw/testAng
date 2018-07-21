@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const ProjectsSchema = new Schema({
+const ProjectSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users'
@@ -156,4 +156,4 @@ const ProjectsSchema = new Schema({
   }
 });
 
-module.exports = Project = mongoose.model('project', ProjectsSchema);
+module.exports = Project = mongoose.model('project', ProjectSchema);

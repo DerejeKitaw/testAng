@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const UserSchema = new Schema({
+const OptimizerSchema = new Schema({
   optimizerId: {
     type: String,
     required: true,
@@ -30,4 +30,4 @@ const UserSchema = new Schema({
 
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = Optimizer = mongoose.model('optimizer', OptimizerSchema);
