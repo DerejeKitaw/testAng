@@ -1,0 +1,51 @@
+[
+  {
+    "customerName": "Dereje Tesfaye",
+    "address1": "'123 abc'",
+    "address2": "'Silver Spring 20904'",
+
+    "acOutputVoltage": 240,
+    "fusedAcDisconnectAmpRating": 60,
+    "fuseSize": 60,
+    "inverterMaxDcVoltage": 600,
+    "nominalDcInputVoltage": 99,
+    "ratedVoltage": 400,
+    "inverter1Type": "'SE11400A-US'",
+    "maxPowerOutput": 11400,
+    "inverterMaxPowerOutput": 11400,
+    "inverterAcOutputVoltage": 240,
+    "maxAcCurrentOutput": 47.5,
+    "cec": 99,
+
+
+    "_id": "5b43056950c317887feac257",
+    "user": "5b42fee74bc81a83f89a193b",
+    "projectId": "1246",
+    "jobType": "'SR'",
+    "numberOfString": 2,
+    "numberOfModuleInverter1String1": 11,
+    "numberOfModuleInverter1String2": 10,
+    "numberOfModuleInverter1String3": 16,
+    "spaceAvailable": true,
+    "mainServiceBreakerSize": 300,
+    "unFusedAcDisconnectAmpRating": 30,
+    "optimizerMaxDcCurrentInput": 13.75,
+    "optimizerMaxDcCurrentOutput": 15,
+    "optimizerMaxPowerOutput": 320,
+    "optimizerMaxDcVoltage": 48,
+    "optimizerModel": 320,
+    "panelMaxSystemVoltage": 1000,
+    "panelIsc": 9.77,
+    "panelVoc": 39.76,
+    "panelImp": 9.26,
+    "panelVmp": 32.24,
+    "panelPower": 300,
+    "panelType": "'Trina 300W'",
+    "systemPower": 12.77,
+    
+    "drawingDate": "2018-07-09T06:05:09.380Z",
+    "comments": [],
+    "date": "2018-07-09T06:49:13.853Z",
+    "__v": 0
+  }
+]

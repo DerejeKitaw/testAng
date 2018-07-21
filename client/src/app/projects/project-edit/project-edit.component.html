@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        {{pageTitle}}
+        {{pageTitle}} - [PROJECT NUMBER: {{project.projectId}}]
     </div>
 
     <div class="panel-body">
@@ -8,6 +8,10 @@
             <a [routerLink]="['info']" routerLinkActive="active">
                 Basic Information  <span [ngClass]="{'glyphicon glyphicon-exclamation-sign':
                                                       !isValid('info')}"></span>
+            </a>
+            <a [routerLink]="['equipments']" routerLinkActive="active">
+                Equipments  <span [ngClass]="{'glyphicon glyphicon-exclamation-sign':
+                                                      !isValid('equipments')}"></span>
             </a>
             <a [routerLink]="['tags']" routerLinkActive="active">
                 Search Tags  <span [ngClass]="{'glyphicon glyphicon-exclamation-sign':

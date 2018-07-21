@@ -7,6 +7,7 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectEditGuard } from './project-edit/project-edit.guard';
 import { ProjectEditInfoComponent } from './project-edit/project-edit-info/project-edit-info.component';
 import { ProjectEditTagsComponent } from './project-edit/project-edit-tags/project-edit-tags.component';
+import { ProjectEditEquipmentsComponent } from './project-edit/project-edit-equipments/project-edit-equipments.component';
 
 const routes: Routes = [
   { path: '', component: ProjectListComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'info', pathMatch: 'full' },
       { path: 'info', component: ProjectEditInfoComponent },
+      { path: 'equipments', component: ProjectEditEquipmentsComponent },
       { path: 'tags', component: ProjectEditTagsComponent }
     ]
   }

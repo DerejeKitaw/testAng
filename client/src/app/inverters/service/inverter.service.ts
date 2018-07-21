@@ -12,7 +12,7 @@ import { Observable, throwError, of } from 'rxjs';
 @Injectable()
 export class InverterService {
 // To access api update .angular-cli.json
-private _inverterUrl = './api/inverters/inverters.json';
+private _inverterUrl = 'api/inverters';
 
   constructor( private _http: HttpClient) { }
 

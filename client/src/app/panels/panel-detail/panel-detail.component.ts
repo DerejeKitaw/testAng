@@ -1,9 +1,10 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { IPanel } from '../panel';
 import { PanelService } from '../service/panel.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'pv-panel-detail',
@@ -11,8 +12,8 @@ import { PanelService } from '../service/panel.service';
   styleUrls: ['./panel-detail.component.scss']
 })
 export class PanelDetailComponent implements OnInit {
-  pageTitle: string = 'Panel Detail';
-  
+  pageTitle = 'Panel Detail';
+
   panel$: Observable<IPanel>;
 
   constructor(
@@ -23,8 +24,8 @@ export class PanelDetailComponent implements OnInit {
 
   ngOnInit() {
     this.panel$ = this.route.paramMap
-      .switchMap((params: ParamMap) =>
-        this.service.getPanel(params.get('id')));
+      .pipe(switchMap((params: ParamMap) =>
+        this.service.getPanel(params.get('id'))));
         console.log(this.panel$);
   }
 

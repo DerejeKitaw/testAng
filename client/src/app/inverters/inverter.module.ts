@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from './../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { InverterListComponent } from './inverter-list/inverter-list.component';
 import { InverterDetailComponent } from './inverter-detail/inverter-detail.component';
@@ -13,15 +13,19 @@ import { InverterEditComponent } from './inverter-edit/inverter-edit.component';
   imports: [
     CommonModule,
     RouterModule.forChild([
-        { path: 'inverters', component: InverterListComponent },
-        { path: 'inverter/:id',
-          // canActivate: [ InverterGuardService ],
-          component: InverterDetailComponent },
-          { path: 'inverter/:id/edit',
-            // canActivate: [ InverterGuardService ],
-            component: InverterEditComponent }
+      { path: 'inverters', component: InverterListComponent },
+      {
+        path: 'inverter/:id',
+        // canActivate: [ InverterGuardService ],
+        component: InverterDetailComponent
+      },
+      {
+        path: 'inverter/:id/edit',
+        // canActivate: [ InverterGuardService ],
+        component: InverterEditComponent
+      }
     ]),
-    HttpClientModule, //add this module for angular4
+    HttpClientModule, // add this module for angular4
     SharedModule,
     ReactiveFormsModule
   ],
@@ -30,9 +34,6 @@ import { InverterEditComponent } from './inverter-edit/inverter-edit.component';
     InverterDetailComponent,
     InverterEditComponent
   ],
-  providers: [
-    InverterService,
-
-  ]
+  providers: [InverterService]
 })
-export class InverterModule { }
+export class InverterModule {}

@@ -16,6 +16,9 @@ const path = require('path');
 
 const users    = require('./server/routes/api/users');
 const projects = require('./server/routes/api/projects');
+const inverters = require('./server/routes/api/inverters');
+const panels = require('./server/routes/api/panels');
+const optimizers = require('./server/routes/api/optimizers');
 
 const app = express();
 
@@ -40,6 +43,9 @@ require('./server/config/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
 app.use('/api/projects', projects);
+app.use('/api/inverters', inverters);
+app.use('/api/panels', panels);
+app.use('/api/optimizers', optimizers);
 app.use(express.static(path.join(__dirname, '/client/dist/client')));
 
 // Server static assets if in production

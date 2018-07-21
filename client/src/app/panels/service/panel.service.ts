@@ -13,7 +13,7 @@ import { IPanel } from '../panel';
 @Injectable()
 export class PanelService {
   // To access api update .angular-cli.json
-  private _panelUrl = 'api/panels/panels.json';
+  private _panelUrl = 'api/panels';
 
   constructor(private _http: HttpClient) {}
 

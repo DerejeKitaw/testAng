@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { map, tap, catchError } from 'rxjs/operators';
 
 
-import { ProjectService } from '../projects/project.service';
+import { ProjectService } from './project.service';
 // import { Project } from '../projects/project.model';
 import { AuthService } from '../auth/auth.service';
 import { IProject } from './project';

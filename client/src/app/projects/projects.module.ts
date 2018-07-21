@@ -14,10 +14,27 @@ import { ProjectEditTagsComponent } from './project-edit/project-edit-tags/proje
 import { ProjectEditGuard } from './project-edit/project-edit.guard';
 import { InverterService } from '../inverters/service/inverter.service';
 import { PanelService } from '../panels/service/panel.service';
+import { OptimizerService } from '../optimizers/service/optimizer.service';
+import { ProjectEditEquipmentsComponent } from './project-edit/project-edit-equipments/project-edit-equipments.component';
 
 @NgModule({
   imports: [SharedModule, ProjectsRoutingModule],
-  declarations: [ProjectListComponent, ProjectDetailComponent, ProjectEditComponent, ProjectEditInfoComponent, ProjectEditTagsComponent],
-  providers: [InverterService, PanelService, ProjectService, ProjectResolver, ProjectParameterService, ProjectEditGuard]
+  declarations: [
+    ProjectListComponent,
+    ProjectDetailComponent,
+    ProjectEditComponent,
+    ProjectEditInfoComponent,
+    ProjectEditTagsComponent,
+    ProjectEditEquipmentsComponent
+  ],
+  providers: [
+    InverterService,
+    PanelService,
+    OptimizerService,
+    ProjectService,
+    ProjectResolver,
+    ProjectParameterService,
+    ProjectEditGuard
+  ]
 })
 export class ProjectsModule {}

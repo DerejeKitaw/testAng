@@ -1,0 +1,18 @@
+[
+  {   
+  "id":1,
+  "optimizerModel": "P300",
+  "optimizerMaxDcVoltage": 48,
+  "optimizerMaxPowerOutput": 300,
+  "optimizerMaxDcCurrentOutput": 15,
+  "optimizerMaxDcCurrentInput": 12.5
+  },
+  {   
+  "id":2,
+  "optimizerModel": "P320",
+  "optimizerMaxDcVoltage": 48,
+  "optimizerMaxPowerOutput": 320,
+  "optimizerMaxDcCurrentOutput": 15,
+  "optimizerMaxDcCurrentInput": 13.75
+  }
+]

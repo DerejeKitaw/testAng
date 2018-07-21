@@ -1,10 +1,13 @@
 ng g module projects --routing
+ng g module optimizers --routing
+ng g service optimizers/service/optimizer
 
 ng g c projects/projectList -d
 ng g c projects/projectDetail -d
 ng g c projects/projectEdit -d
 ng g c projects/project-edit/ProjectEditInfo -d
 ng g c projects/project-edit/ProjectEditTags -d
+ng g c projects/project-edit/ProjectEditEquipments -d
 
 ng g service projects/project
 ng g service projects/projectParameter

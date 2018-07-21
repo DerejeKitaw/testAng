@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from './../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { PanelListComponent } from './panel-list/panel-list.component';
 import { PanelDetailComponent } from './panel-detail/panel-detail.component';
