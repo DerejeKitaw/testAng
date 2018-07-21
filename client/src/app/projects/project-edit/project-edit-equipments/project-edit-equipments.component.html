@@ -3,7 +3,7 @@
     <fieldset>
       <legend>Basic Project Information</legend>
 
-
+{{project | json}}
       <!-- Select Inverter Start-->
       <div class="form-group" [ngClass]="{'has-error': (InverterId.touched || InverterId.dirty) && !InverterId.valid }">
         <label class="col-md-2 control-label" for="InverterId">Select Inverter</label>

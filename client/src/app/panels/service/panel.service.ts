@@ -19,7 +19,7 @@ export class PanelService {
 
   getPanels(): Observable<IPanel[]> {
     return this._http.get<IPanel[]>(this._panelUrl).pipe(
-      tap(data => console.log('All: ' + JSON.stringify(data))),
+      // tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }

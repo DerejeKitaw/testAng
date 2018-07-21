@@ -15,7 +15,7 @@ constructor(private _http: HttpClient) {}
 
 getOptimizers(): Observable<IOptimizer[]> {
   return this._http.get<IOptimizer[]>(this._optimizerUrl).pipe(
-    tap(data => console.log('All: ' + JSON.stringify(data))),
+    // tap(data => console.log('All: ' + JSON.stringify(data))),
     catchError(this.handleError)
   );
 }

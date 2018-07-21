@@ -47,7 +47,7 @@ ngOnInit(): void {
     inverters => {
       // both inverters and filteredInverters are same initialy
       this.inverters = inverters;
-      console.log('inverters: ' + inverters);
+      // console.log('inverters: ' + inverters);
       this.getInverterList();
     },
     // error => this.errorMessage = <any>error); // TODO: log this to error log in production.
@@ -61,7 +61,7 @@ ngOnInit(): void {
     panels => {
       // both panels and filteredPanel are same initialy
       this.panels = panels;
-      console.log('panels: ' + panels);
+      // console.log('panels: ' + panels);
       this.getPanelList();
     },
     // error => this.errorMessage = <any>error); // TODO: log this to error log in production.
@@ -75,7 +75,7 @@ ngOnInit(): void {
     optimizers => {
       // both optimizers and filteredOptimizer are same initialy
       this.optimizers = optimizers;
-      console.log('optimizers: ' + optimizers);
+      // console.log('optimizers: ' + optimizers);
       this.getOptimizerList();
     },
     // error => this.errorMessage = <any>error); // TODO: log this to error log in production.
@@ -90,6 +90,7 @@ ngOnInit(): void {
 
     this.project = data['project'][0];
     // console.log('data from project edit info' + JSON.stringify(this.project));
+    console.log('data :' + JSON.stringify(data));
 
     if (this.projectForm) {
       this.projectForm.reset();

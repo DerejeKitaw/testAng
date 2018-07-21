@@ -18,7 +18,7 @@ private _inverterUrl = 'api/inverters';
 
 getInverters(): Observable<IInverter[]> {
   return this._http.get<IInverter[]>(this._inverterUrl).pipe(
-    tap(data => console.log('All: ' + JSON.stringify(data))),
+    // tap(data => console.log('All: ' + JSON.stringify(data))),
     catchError(this.handleError)
   );
 }
