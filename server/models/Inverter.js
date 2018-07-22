@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 const InverterSchema = new Schema({
   inverterId: {
-    type: String,
+    type: Number,
     required: true,
   },
   inverterManufacturer: {

@@ -70,7 +70,7 @@ export class InverterEditComponent implements OnInit {
   onInverterRetrieved(inverter: IInverter): void {
     this.inverter = inverter;
 
-    if (this.inverter.id === 0) {
+    if (this.inverter.inverterId === 0) {
       this.pageTitle = 'Add Inverter';
     } else {
       this.pageTitle = `Edit Inverter : ${this.inverter.inverterManufacturer}`;

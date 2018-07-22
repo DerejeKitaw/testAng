@@ -1,4 +1,5 @@
 export interface IProject {
+  _id?: string;
   projectId: string;
   // Strings
   numberOfString: number;

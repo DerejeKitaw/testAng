@@ -73,14 +73,28 @@ export class ProjectService implements OnInit {
     return throwError(errorMessage);
   }
 
-  deleteProject(id: string): Observable<{}> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  deleteProject(project: IProject): Observable<IProject> {
+    if (localStorage.jwtToken) {
+      const token = localStorage.jwtToken;
+      httpOptions.headers = httpOptions.headers.set('Authorization', token);
+      console.log('---saveProject---' + token);
+      console.log('---project---' + project);
+    }
+    const url = `${this._projectsUrl}/${project._id}`;
+    // console.log('---updateProject---' + JSON.stringify(httpOptions));
+    return this._http.delete<IProject>(url, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
 
-    const url = `${this._projectsUrl}/${id}`;
-    return this._http.delete<IProject>(url, { headers: headers }).pipe(
-      tap(data => console.log('deleteProject: ' + id)),
-      catchError(this.handleError)
-    );
+
+    // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    // const url = `${this._projectsUrl}/${id}`;
+    // return this._http.delete<IProject>(url, { headers: headers }).pipe(
+    //   tap(data => console.log('deleteProject: ' + id)),
+    //   catchError(this.handleError)
+    // );
   }
   // .set('Authorization', `Bearer ${token}`)
   saveProject(project: IProject): Observable<IProject> {

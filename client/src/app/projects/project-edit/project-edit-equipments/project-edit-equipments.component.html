@@ -9,7 +9,7 @@
         <label class="col-md-2 control-label" for="InverterId">Select Inverter</label>
         <div class="col-sm-8 col-md-4">
           <select id="InverterId" #InverterId="ngModel" class="hideLabel form-control" [(ngModel)]="inverterId" name="InverterId" (change)="selectInverter();">
-            <option selected="" value=""></option>
+            <!-- <option selected="" value=""></option> -->
             <option [ngValue]="k.id" *ngFor="let k of inverterList">
               {{k.inverterType}}
             </option>
@@ -22,7 +22,7 @@
         <label class="col-md-2 control-label" for="PanelId">Select Panel</label>
         <div class="col-sm-8 col-md-4">
           <select id="PanelId" #PanelId="ngModel" class="hideLabel form-control" [(ngModel)]="panelId" name="PanelId" (change)="selectPanel();">
-            <option selected="" value=""></option>
+            <!-- <option selected="" value=""></option> -->
             <option [ngValue]="k.id" *ngFor="let k of panelList">
               {{k.panelType}}
             </option>
@@ -37,9 +37,10 @@
         <label class="col-md-2 control-label"  for="optimizerModelId">Optimizer Model</label>
         <div class="col-sm-8 col-md-4">
               <select id="OptimizerId" #OptimizerId="ngModel" class="hideLabel form-control" [(ngModel)]="optimizerId" name="OptimizerId" (change)="selectOptimizer();">
-            <option value="" disabled selected hidden>Optimizer Model...</option>
-            <option value="P300">P300</option>
-            <option value="P320">P320</option>
+                <!-- <option selected="" value=""></option> -->
+            <option [ngValue]="k.id" *ngFor="let k of optimizerList">
+              {{k.optimizerModel}}
+            </option>
 
           </select>
         </div>

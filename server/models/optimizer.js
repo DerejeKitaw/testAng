@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 const OptimizerSchema = new Schema({
   optimizerId: {
-    type: String,
+    type: Number,
     required: true,
   },
   optimizerModel: {

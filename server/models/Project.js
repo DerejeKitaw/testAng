@@ -7,6 +7,14 @@ const ProjectSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
+  inverter: {
+    type: Schema.Types.ObjectId,
+    ref: 'inverters'
+  },
+  panel: {
+    type: Schema.Types.ObjectId,
+    ref: 'panels'
+  },
   projectId: {
     type: String,
     required: true,
@@ -45,15 +53,19 @@ const ProjectSchema = new Schema({
   },
   numberOfString: {
     type: Number
+    
   },
   numberOfModuleInverter1String1: {
-    type: Number
+    type: Number,
+    default: 0
   },
   numberOfModuleInverter1String2: {
-    type: Number
+    type: Number,
+    default: 0
   },
   numberOfModuleInverter1String3: {
-    type: Number
+    type: Number,
+    default: 0
   },
   mainServiceBreakerSize: {
     type: Number
@@ -79,7 +91,7 @@ const ProjectSchema = new Schema({
   ratedVoltage: {
     type: Number
   },
-  inverter1Type: {
+  inverterType: {
     type: String
   },
   maxPowerOutput: {
@@ -110,7 +122,7 @@ const ProjectSchema = new Schema({
     type: Number
   },
   optimizerModel: {
-    type: Number
+    type: String
   },
   panelMaxSystemVoltage: {
     type: Number

@@ -47,7 +47,7 @@ ngOnInit(): void {
     inverters => {
       // both inverters and filteredInverters are same initialy
       this.inverters = inverters;
-      // console.log('inverters: ' + inverters);
+      console.log('inverters: ' + JSON.stringify(inverters));
       this.getInverterList();
     },
     // error => this.errorMessage = <any>error); // TODO: log this to error log in production.
@@ -90,7 +90,8 @@ ngOnInit(): void {
 
     this.project = data['project'][0];
     // console.log('data from project edit info' + JSON.stringify(this.project));
-    console.log('data :' + JSON.stringify(data));
+    // console.log('data :' + JSON.stringify(data));
+    // data - all projects list - data :{"project":[{project1 Obj},{project1 Obj}]
 
     if (this.projectForm) {
       this.projectForm.reset();

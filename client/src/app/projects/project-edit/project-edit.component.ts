@@ -59,7 +59,7 @@ export class ProjectEditComponent implements OnInit {
             this.onSaveComplete(`${this.project.customerName} was deleted`);
         } else {
             if (confirm(`Really delete the project: ${this.project.customerName}?`)) {
-                this.projectService.deleteProject(this.project.projectId).subscribe(
+                this.projectService.deleteProject(this.project).subscribe(
                     () => this.onSaveComplete(`${this.project.customerName} was deleted`)
                 );
             }

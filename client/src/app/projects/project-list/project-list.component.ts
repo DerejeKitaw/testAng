@@ -11,9 +11,26 @@ import { ProjectParameterService } from '../project-parameter.service';
 })
 export class ProjectListComponent implements OnInit {
   pageTitle = 'Project List';
+  errorMessage: string;
+
+    private currentProject: IProject;
+    private originalProject: IProject;
+    private dataIsValid: { [key: string]: boolean } = {};
+
+    get isDirty(): boolean {
+        return JSON.stringify(this.originalProject) !== JSON.stringify(this.currentProject);
+    }
+
+    get project(): IProject {
+        return this.currentProject;
+    }
+    set project(value: IProject) {
+        this.currentProject = value;
+        // Clone the object to retain a copy
+        this.originalProject = Object.assign({}, value);
+    }
   filteredProjects: IProject[];
   projects: IProject[];
-  errorMessage: string;
   get listFilter(): string {
     return this.projectParameterService.filterBy;
   }
@@ -78,4 +95,27 @@ export class ProjectListComponent implements OnInit {
     }
     return projects;
   }
+
+  deleteProject(project): void {
+    console.log('project' + JSON.stringify(project));
+    if (confirm(`Really delete the project: ${project.customerName}?`)) {
+      this._projectService.deleteProject(project).subscribe(
+          () => this.onSaveComplete(`${project.customerName} was deleted`)
+      );
+  }
+}
+onSaveComplete(message?: string): void {
+  console.log(message);
+  this.reset();
+  // Navigate back to the project list
+  // this.router.navigate(['/projects']);
+}
+
+// Reset the data
+// Required after a save so the data is no longer seen as dirty.
+reset(): void {
+  this.dataIsValid = null;
+  this.currentProject = null;
+  this.originalProject = null;
+}
 }

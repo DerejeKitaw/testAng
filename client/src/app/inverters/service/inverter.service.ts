@@ -28,7 +28,7 @@ getInverter(id: number | string) {
   return this.getInverters()
     // (+) before `id` turns the string into a number
     // very important if id is string do not add '+'
-    .pipe(map(inverters => inverters.find(inverter => inverter.id === +id)));
+    .pipe(map(inverters => inverters.find(inverter => inverter.inverterId === +id)));
 }
 
 
